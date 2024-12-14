@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "lec07prg01hellogrpc";
+option go_package = "github.com/myeunee/FSSN_gRPC/lec-07-prg-01-hello_gRPC";
 
 service MyService {
     rpc MyFunction(MyNumber) returns (MyNumber) {}
