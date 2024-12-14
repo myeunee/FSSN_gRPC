@@ -19,7 +19,7 @@ type MyServiceImpl struct {
 func (s *MyServiceImpl) MyFunction(ctx context.Context, req *pb.MyNumber) (*pb.MyNumber, error) {
 	// (5.2) 응답 메시지를 생성
 	response := &pb.MyNumber{
-		Value: MyFunc(req.Value), // MyFunc은 별도로 정의된 함수
+		Value: pb.MyFunc(req.Value), // MyFunc은 별도로 정의된 함수
 	}
 	return response, nil
 }
