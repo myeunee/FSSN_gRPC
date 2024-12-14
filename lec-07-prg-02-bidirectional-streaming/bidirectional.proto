@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "github.com/myeunee/FSSN_gRPC/lec-07-prg-02-bidirectional-streaming";
+
+service Bidirectional {
+  rpc GetServerResponse(stream Message) returns (stream Message) {}
+}
+
+message Message {
+  string message = 1;
+}
