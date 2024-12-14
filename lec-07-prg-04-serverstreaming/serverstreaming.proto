@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "github.com/myeunee/FSSN_gRPC/lec-07-prg-04-serverstreaming";
+
+service ServerStreaming {
+   rpc GetServerResponse(Number) returns (stream Message) {}
+}
+
+message Message {
+  string message = 1;
+}
+
+message Number {
+  int32 value = 1;
+}
