@@ -6,22 +6,22 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-01-hello_gRPC" // protoc로 생성된 pb.go 파일 import
+	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-01-hello_gRPC"
 	"google.golang.org/grpc"
 )
 
 func main() {
 	// (3) gRPC 통신 채널 생성
-	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure()) // 보안 없이 연결
+	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Failed to connect: %v", err)
 	}
 	defer conn.Close()
 
-	// (4) 생성된 통신 채널로 stub 초기화
+	// (4) 통신 채널로 stub 생성
 	client := pb.NewMyServiceClient(conn)
 
-	// (5) 요청 메시지 생성
+	// (5) 원격 함수에 전달할 메시지 만듬
 	request := &pb.MyNumber{Value: 4}
 
 	// (6) gRPC 원격 함수 호출
