@@ -5,12 +5,12 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-03-clientstreaming" // gRPC 코드
+	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-03-clientstreaming"
 	"google.golang.org/grpc"
 )
 
 type ClientStreamingService struct {
-	pb.UnimplementedClientStreamingServer // 기본 동작 포함
+	pb.UnimplementedClientStreamingServer
 }
 
 // GetServerResponse handles client-streaming.
@@ -29,7 +29,7 @@ func (s *ClientStreamingService) GetServerResponse(stream pb.ClientStreaming_Get
 	}
 	response := &pb.Number{Value: int32(count)}
 	fmt.Printf("[server to client] %d\n", response.Value)
-	return stream.SendAndClose(response) // 응답 전송 및 스트리밍 닫기
+	return stream.SendAndClose(response) // 응답 전송 + 스트리밍 닫기
 }
 
 func main() {

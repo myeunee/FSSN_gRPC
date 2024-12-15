@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-03-clientstreaming" // gRPC 코드
+	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-03-clientstreaming"
 	"google.golang.org/grpc"
 )
 
