@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-02-bidirectional-streaming" // gRPC 코드
+	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-02-bidirectional-streaming"
 	"google.golang.org/grpc"
 )
 
