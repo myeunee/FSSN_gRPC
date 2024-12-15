@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-04-serverstreaming" // gRPC 코드
+	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-04-serverstreaming"
 	"google.golang.org/grpc"
 )
 
@@ -14,7 +14,7 @@ func recvMessage(client pb.ServerStreamingClient) {
 	req := &pb.Number{Value: 5}
 	stream, err := client.GetServerResponse(ctx, req)
 	if err != nil {
-		log.Fatalf("Failed to call GetServerResponse: %v", err)
+		log.Fatalf("[에러] Failed to call GetServerResponse: %v", err)
 	}
 
 	for {
@@ -23,7 +23,7 @@ func recvMessage(client pb.ServerStreamingClient) {
 			if err.Error() == "EOF" {
 				break
 			}
-			log.Fatalf("Failed to receive message: %v", err)
+			log.Fatalf("[에러] Failed to receive message: %v", err)
 		}
 		fmt.Printf("[server to client] %s\n", msg.GetMessage())
 	}
@@ -32,7 +32,7 @@ func recvMessage(client pb.ServerStreamingClient) {
 func main() {
 	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
 	if err != nil {
-		log.Fatalf("Failed to connect to server: %v", err)
+		log.Fatalf("[에러] Failed to connect to server: %v", err)
 	}
 	defer conn.Close()
 

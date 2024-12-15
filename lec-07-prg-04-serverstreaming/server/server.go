@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-04-serverstreaming" // gRPC 코드
+	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-04-serverstreaming"
 	"google.golang.org/grpc"
 )
 
@@ -14,7 +14,7 @@ func makeMessage(text string) *pb.Message {
 }
 
 type ServerStreamingService struct {
-	pb.UnimplementedServerStreamingServer // 기본 동작 포함
+	pb.UnimplementedServerStreamingServer
 }
 
 // GetServerResponse handles server-streaming.
@@ -38,13 +38,13 @@ func (s *ServerStreamingService) GetServerResponse(req *pb.Number, stream pb.Ser
 func main() {
 	listener, err := net.Listen("tcp", ":50051")
 	if err != nil {
-		log.Fatalf("Failed to listen on port 50051: %v", err)
+		log.Fatalf("[에러] Failed to listen on port 50051: %v", err)
 	}
 
 	server := grpc.NewServer()
 	pb.RegisterServerStreamingServer(server, &ServerStreamingService{})
 	fmt.Println("Starting server. Listening on port 50051.")
 	if err := server.Serve(listener); err != nil {
-		log.Fatalf("Failed to serve: %v", err)
+		log.Fatalf("[에러] Failed to serve: %v", err)
 	}
 }
