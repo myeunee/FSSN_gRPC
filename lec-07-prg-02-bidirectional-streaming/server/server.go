@@ -5,15 +5,14 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-02-bidirectional-streaming" // gRPC 코드
+	pb "github.com/myeunee/FSSN_gRPC/lec-07-prg-02-bidirectional-streaming"
 	"google.golang.org/grpc"
 )
 
 type BidirectionalService struct {
-	pb.UnimplementedBidirectionalServer // 기본 동작 포함
+	pb.UnimplementedBidirectionalServer
 }
 
-// GetServerResponse handles bidirectional streaming.
 func (s *BidirectionalService) GetServerResponse(stream pb.Bidirectional_GetServerResponseServer) error {
 	fmt.Println("Server processing gRPC bidirectional streaming.")
 	for {
@@ -22,7 +21,7 @@ func (s *BidirectionalService) GetServerResponse(stream pb.Bidirectional_GetServ
 			return err
 		}
 		fmt.Printf("[client to server] %s\n", message.GetMessage())
-		response := &pb.Message{Message: message.GetMessage()} // 수신 메시지를 그대로 반환
+		response := &pb.Message{Message: message.GetMessage()} // 수신 메시지를 리턴
 		if err := stream.Send(response); err != nil {
 			return err
 		}
